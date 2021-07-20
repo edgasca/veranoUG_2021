@@ -39,7 +39,7 @@ void dibujar(void);
 
 bool iniciarOpenGL(int argc, char* argv[])
 {
-	glutInit(&argc, argv);
+    glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DEPTH | GLUT_DOUBLE | GLUT_RGBA);
     glutInitWindowSize(ancho,alto);
     glutCreateWindow("Verano de investigacion UG 2021");
@@ -187,12 +187,9 @@ void rotar()
 void mostrarDatosKinect() 
 {
     
-    //glBindTexture(GL_TEXTURE_2D, texturaID);
-
     obtenerDatosKinect();
     rotar();
-    //glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_BGRA_EXT, GL_UNSIGNED_BYTE, (GLvoid*)data);
-    
+   
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glEnableClientState(GL_VERTEX_ARRAY);
     glEnableClientState(GL_COLOR_ARRAY);
@@ -217,6 +214,7 @@ void lanzar()
     glutMainLoop();
 }
 
+//MAIN
 int main(int argc, char* argv[])
 {
     if (!iniciarOpenGL(argc,argv))
@@ -232,27 +230,8 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    /*
-    glGenTextures(1, &textureId);
-    glBindTexture(GL_TEXTURE_2D, textureId);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, width, height, 0, GL_BGRA_EXT, GL_UNSIGNED_BYTE, (GLvoid*)data);
-    glBindTexture(GL_TEXTURE_2D, 0);
-    */
-
     glClearColor(0, 0, 0, 0);
     glClearDepth(1.0f);
-
-    /*
-    const int dataSize = width*height * 3 * 4;
-	glGenBuffers(1, &vboId);
-	glBindBuffer(GL_ARRAY_BUFFER, vboId);
-	glBufferData(GL_ARRAY_BUFFER, dataSize, 0, GL_DYNAMIC_DRAW);
-	glGenBuffers(1, &cboId);
-	glBindBuffer(GL_ARRAY_BUFFER, cboId);
-	glBufferData(GL_ARRAY_BUFFER, dataSize, 0, GL_DYNAMIC_DRAW);
-    */
 
     glViewport(0, 0, ancho, alto);
     glMatrixMode(GL_PROJECTION);
@@ -263,5 +242,6 @@ int main(int argc, char* argv[])
     gluLookAt(0, 0, 0, 0, 0, 1, 0, 1, 0);
 
     lanzar();
-	return 0;
+	
+    return 0;
 }
